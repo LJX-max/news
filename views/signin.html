@@ -28,8 +28,8 @@
             </div>
             <div class="checkbox">
                 <label>
-          <input type="checkbox">记住我
-        </label>
+                    <input type="checkbox">记住我
+                </label>
             </div>
             <button type="submit" class="btn btn-success btn-block">登录</button>
         </form>
@@ -38,7 +38,31 @@
         </div>
     </div>
     <script src="/node_modules/jquery/dist/jquery.js"></script>
+
     <script>
+        // 客户发送表单提交
+        $('#signin_form').on('submit', function (e) {
+            // 阻止默认行为
+            e.preventDefault();
+            //获取表单数据
+            var formData = $(this).serialize();
+            // 发送ajax请求
+            $.ajax({
+                type: 'post',
+                url: '/signin',
+                data: formData,
+                dataType: 'json',
+                success: function (data) {
+                    // 处理服务端返回响应
+                    if (data.code == 200) {
+                        // 来到列表页
+                        location.href = '/';
+                    } else {
+                        alert(data.msg);
+                    }
+                }
+            });
+        });
     </script>
 </body>
 

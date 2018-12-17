@@ -9,3 +9,7 @@
 .navbar-default .navbar-nav>.open>a:focus {
   background: none;
 }
+
+.navbar-nav>li {
+  text-align: center;
+}
